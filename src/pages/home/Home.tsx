@@ -1,32 +1,33 @@
-import { RootState } from "@/redux";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { increment } from "@/redux/features/counter-slice";
-import { useGetProductsQuery } from "@/redux/api/product-api";
-import { IProduct } from "@/types";
+import FlashSales from "@/components/flash_sales/FlashSales";
+import Products from "../../components/products/Products";
+import Skeleton from "../../components/products/Skeleton";
+import { useGetProductsQuery } from "../../redux/api/product-api";
+import Hero from "./Hero"
+import Categories from "@/components/categories/Categories";
+import BestSellers from "@/components/best_sellers/BestSellers";
 
 const Home = () => {
-  const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
-  const { data } = useGetProductsQuery({order:"desc"});
-  console.log(data?.data?.products);
-
+  const { data, isLoading } = useGetProductsQuery({});
+  
   return (
-    <div>
-      <h2>Home {count}</h2>
-      <button onClick={() => dispatch(increment())}>Click</button>
-      <div>
-       {
-        data?.data?.products?.map((product:IProduct)=>(
-          <div key={product.id}>
-            <img src={product.image[0]} alt={product.title} />
-            <h3>{product.title}</h3>
-          </div>
-        ))
-       }
-      </div>
-    </div>
+    <>
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        <>
+          <Hero />
+          <FlashSales />
+          {data && (
+            <Products
+              data={data}
+            />
+          )}
+          <Categories />
+          <BestSellers data={data} />
+        </>
+      )}
+    </>
   );
-};
+}
 
-export default React.memo(Home);
+export default Home

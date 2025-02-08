@@ -1,23 +1,33 @@
 export interface IGetResponseProducts {
-    data: IGetProducts,
-    message: string,
-    statusCode: number
+  data: IGetProducts;
+  message: string;
+  statusCode: number;
 }
+
 export interface IGetProducts {
-    limit: number,
-    page: number,
-    products:IProduct[],
-    total: number
+  products: IProduct[];
+  limit: number;
+  skip: number;
+  total: number;
 }
+
 export interface IProduct {
-    id: number,
-    title: string,
-    stock: number,
-    image: string[],
+  id: number;
+  category: string;
+  description: string;
+  images: string[];
+  price: number;
+  rating: number;
+  stock: number;
+  title: string;
+  thumbnail: string[];
+  reviews: string[];
 }
+
 export interface IProductQuery {
-    filter?: string,
-    order?: "asc" | "desc",
-    page?: number,
-    limit?: number
+  filter?: string;
+  order?: "asc" | "desc";
+  skip?: number;
+  limit?: number;
+  price?: "asc" | "desc";
 }
