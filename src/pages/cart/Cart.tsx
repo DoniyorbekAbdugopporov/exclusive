@@ -111,13 +111,13 @@ const Cart = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-        <div className="flex gap-2">
+        <div className="flex gap-2 h-12">
           <input
             type="text"
             placeholder="Coupon Code"
-            className="border border-gray-300 px-4 py-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-red-400"
+            className="border border-gray-300 px-4 py-2 rounded-md w-80 focus:outline-none focus:ring-2 focus:ring-red-400"
           />
-          <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition">
+          <button className="bg-secondary text-[#fff] px-8 rounded-md hover:bg-red-600 transition">
             Apply Coupon
           </button>
         </div>

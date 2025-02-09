@@ -1,4 +1,4 @@
-import { IoSearch } from "react-icons/io5";
+import { IoSearch, IoSearchOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
 import { FaRegHeart } from "react-icons/fa";
@@ -19,14 +19,14 @@ const Navbar = () => {
         <NavLink to={"/signup"}>Sign up</NavLink>
       </div>
       <div className="flex items-center gap-4 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:bg-primary max-lg:w-full max-lg:text-white max-lg:justify-evenly max-lg:py-2 max-lg:z-10">
-        <span className="flex items-center bg-[#F5F5F5] max-w-[243px] h-[38px] px-5 py-[7px] rounded-md max-lg:bg-primary">
+        <div className="w-[300px] h-[50px] flex justify-around items-center rounded-[4px] bg-[#F5F5F5]">
           <input
-            type="text"
             placeholder="What are you looking for?"
-            className="bg-[#F5F5F5] w-96 outline-none rounded-[4px] max-lg:hidden"
+            type="text"
+            className="w-[210px] h-[38px] outline-none bg-[#F5F5F5] font-poppins"
           />
-          <IoSearch className="h-6 w-8  max-lg:text-white" />
-        </span>
+          <IoSearchOutline className="w-7 h-7" />
+        </div>
         <NavLink to={"/wishlist"}>
           <FaRegHeart className="h-6 w-6" />
         </NavLink>
