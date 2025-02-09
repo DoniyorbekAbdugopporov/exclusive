@@ -1,4 +1,4 @@
-import { IoSearch, IoSearchOutline } from "react-icons/io5";
+import { IoSearchOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
 import { FaRegHeart } from "react-icons/fa";
@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div className="container flex gap-40 justify-between items-center h-[94px] max-xl:gap-28">
       <NavLink to="/">
-        <p className="font-inter-medium text-2xl text-primary max-[500px]:text-xl">
+        <p className="font-inter-medium text-2xl font-semibold text-primary max-[500px]:text-xl">
           Exclusive
         </p>
       </NavLink>

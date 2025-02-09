@@ -34,11 +34,11 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container flex flex-col md:flex-row mt-10 mb-20">
+    <div className="container flex flex-col gap-10 md:flex-row mt-10 mb-20">
       <div className="hidden md:block">
         <img src={sign_photo} alt="Sign Up" />
       </div>
-      <div className="flex justify-center items-center md:pl-32 w-full">
+      <div className="flex justify-center md:pl-32">
         <div className="w-[370px] flex flex-col justify-center items-center font-poppins">
           <form onSubmit={handleSubmit} className="w-full">
             <div className="flex flex-col gap-6">
