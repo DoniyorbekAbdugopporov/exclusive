@@ -162,7 +162,7 @@ const Checkout = () => {
               placeholder="Coupon Code"
               className="border w-full p-2 rounded-l"
             />
-            <button className="bg-red-500 text-white px-4 py-2 rounded-r hover:bg-red-700">
+            <button className="bg-secondary text-[#fff] px-4 py-2 rounded-r hover:bg-[#e44747]">
               Apply Coupon
             </button>
           </div>
