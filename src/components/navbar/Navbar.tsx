@@ -16,7 +16,7 @@ const Navbar = () => {
         <NavLink to={"/"}>Home</NavLink>
         <NavLink to={"/contact"}>Contact</NavLink>
         <NavLink to={"/about"}>About</NavLink>
-        <NavLink to={"/login"}>Sign up</NavLink>
+        <NavLink to={"/signup"}>Sign up</NavLink>
       </div>
       <div className="flex items-center gap-4 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:bg-primary max-lg:w-full max-lg:text-white max-lg:justify-evenly max-lg:py-2 max-lg:z-10">
         <span className="flex items-center bg-[#F5F5F5] max-w-[243px] h-[38px] px-5 py-[7px] rounded-md max-lg:bg-primary">
@@ -33,7 +33,7 @@ const Navbar = () => {
         <NavLink to={"/cart"}>
           <IoCartOutline className="h-6 w-6" />
         </NavLink>
-        <NavLink to={"/login"}>
+        <NavLink to={"/signin"}>
           <FiUser className="h-6 w-6" />
         </NavLink>
       </div>

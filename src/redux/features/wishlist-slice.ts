@@ -1,5 +1,5 @@
-import { IProduct } from "../../types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IProduct } from "../../types";
 
 const STORAGE_KEY = "wishlist";
 

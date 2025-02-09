@@ -1,91 +1,80 @@
-import { memo } from "react";
-import { IGetProducts, IProduct } from "../../types";
+import { IProduct } from "../../types";
+import Stars from "../stars/Stars";
+import CartBtn from "./CartBtn";
+import Heart from "./Heart";
+import SeeBtn from "./SeeBtn";
 
-import { FaRegHeart } from "react-icons/fa";
-import { IoEyeOutline } from "react-icons/io5";
-import {
-  TiStarFullOutline,
-  TiStarHalfOutline,
-  TiStarOutline,
-} from "react-icons/ti";
-
-const Products = ({ data }: { data: IGetProducts }) => {
-  const renderStars = (rating: number) => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      if (i <= Math.floor(rating)) {
-        stars.push(
-          <TiStarFullOutline key={i} className="text-yellow-500 text-lg" />
-        );
-      } else if (i - rating > 0 && i - rating < 1) {
-        stars.push(
-          <TiStarHalfOutline key={i} className="text-yellow-500 text-lg" />
-        );
-      } else {
-        stars.push(<TiStarOutline key={i} className="text-gray-400 text-lg" />);
-      }
-    }
-    return stars;
-  };
-
-  const productItems = data?.products?.slice(0, 4).map((product: IProduct) => (
-    <div
-      key={product.id}
-      className="relative group overflow-hidden transform transition-all duration-300"
-    >
-      <div className="relative w-full h-[250px] sm:h-[240px] md:h-[250px] lg:h-[260px] block overflow-hidden">
-        <img
-          className="w-full h-full object-cover transition-transform duration-500 bg-[#F5F5F5]"
-          src={`${product.thumbnail}`}
-          alt={product.title}
-        />
-
-        <div className="absolute top-3 right-3 flex flex-col items-center gap-2">
-          <button className="w-[34px] h-[34px] flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 transition">
-            <FaRegHeart className="text-gray-600 text-lg" />
-          </button>
-          <button className="w-[34px] h-[34px] flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 transition">
-            <IoEyeOutline className="text-gray-600 text-lg" />
-          </button>
-        </div>
-
-        <button
-          className="absolute bottom-0 left-0 w-full bg-primary text-[#fff] py-2 text-center text-sm font-semibold uppercase 
-          transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-        >
-          Add To Cart
-        </button>
-      </div>
-
-      <div className="py-3 px-2 transition-colors duration-300">
-        <h2
-          title={product.title}
-          className="text-base font-poppins-medium text-primary truncate max-[620px]:text-sm"
-        >
-          {product.title}
-        </h2>
-        <div className="flex mt-2 items-center gap-2 text-sm">
-          <strong className="text-base text-[#DB4444] font-poppins max-[620px]:text-base">
-            $ {product.price}
-          </strong>
-          <div className="flex items-center ">
-            {renderStars(product.rating)}
-          </div>
-          <span className="text-gray-500 text-sm flex items-center">
-            ({product.reviews.length})
-          </span>
-        </div>
-      </div>
-    </div>
-  ));
-
+const Products = ({
+  data,
+  title,
+}: {
+  data: { products: IProduct[] };
+  title: string;
+}) => {
   return (
-    <div className="container my-10 px-4 max-[620px]:my-5 max-[620px]:px-2">
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-3 md:gap-4">
-        {productItems}
+    <div className="container my-10 px-4">
+      {/* Title */}
+      <h2 className="font-poppins-bold text-2xl mb-6 text-center text-gray-900 max-[620px]:text-xl">
+        {title}
+      </h2>
+
+      {/* Product Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {data?.products?.slice(0, 8).map((product) => (
+          <div key={product.id} className="w-full max-w-[290px] relative group">
+            {/* Chegirma belgisi */}
+            {product.price > 0 && (
+              <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                -{Math.round(product.price)}%
+              </div>
+            )}
+
+            {/* Image Container */}
+            <div className="h-[250px] bg-[#F5F5F5] flex justify-center items-center relative overflow-hidden rounded-sm">
+              <img
+                src={product.images[1] || product.images[0]}
+                alt={product.title}
+                className="object-contain w-full h-[200px] transition-transform duration-300 group-hover:scale-105"
+              />
+
+              {/* Like & See Buttons */}
+              <div className="absolute top-2 right-[-50px] group-hover:right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out flex flex-col gap-2">
+                <Heart product={product} />
+                <SeeBtn product={product} />
+              </div>
+
+              {/* Cart Button */}
+              <CartBtn product={product} />
+            </div>
+
+            {/* Product Info */}
+            <div className="flex flex-col pt-4">
+              <h2 className="truncate font-poppins font-medium">
+                {product.title}
+              </h2>
+              <div className="flex items-center gap-2 font-poppins">
+                <p className="text-[#DB4444] font-semibold">
+                  $
+                  {Math.round(
+                    product.price - (product.price * product.price) / 100
+                  )}
+                </p>
+                {product.price > 0 && (
+                  <p className="text-gray-500 line-through text-sm">
+                    ${product.price}
+                  </p>
+                )}
+              </div>
+              <div className="flex items-center gap-1">
+                <Stars rating={product.rating} />
+                <p className="text-gray-600 text-sm">({product.stock})</p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default memo(Products);
+export default Products;
