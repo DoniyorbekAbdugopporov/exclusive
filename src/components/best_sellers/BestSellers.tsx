@@ -22,7 +22,7 @@ const BestSellers = ({ data }: { data: IGetProducts }) => {
     return stars;
   };
 
-  const productItems = data?.products?.slice(10, 14).map((product: IProduct) => (
+  const productItems = data?.products?.slice(10, 18).map((product: IProduct) => (
     <div
       key={product.id}
       className="relative group overflow-hidden transform transition-all duration-300"

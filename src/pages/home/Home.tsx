@@ -5,6 +5,7 @@ import { useGetProductsQuery } from "../../redux/api/product-api";
 import Hero from "./Hero"
 import Categories from "@/components/categories/Categories";
 import BestSellers from "@/components/best_sellers/BestSellers";
+import MusicExperience from "@/components/music_experiance/MusicExperience";
 
 const Home = () => {
   const { data, isLoading } = useGetProductsQuery({});
@@ -17,12 +18,10 @@ const Home = () => {
         <>
           <Hero />
           <FlashSales />
-          {data && (
-            <Products
-              data={data}
-            />
-          )}
+          {data && <Products data={data} />}
           <Categories />
+          <BestSellers data={data} />
+          <MusicExperience />
           <BestSellers data={data} />
         </>
       )}

@@ -13,7 +13,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="max-w-[1440px] bg-primary text-[#fff] font-poppins-medium pt-20 px-[135px] max-sm:pl-0">
+    <div className="bg-primary text-[#fff] font-poppins-medium pt-20 px-[135px] max-sm:pl-0">
       <div className="container grid grid-cols-5 gap-[87px] max-md:grid-cols-3 max-sm:grid-cols-2">
         <div className="flex gap-6 flex-col">
           <h3 className="text-2xl">Exclusive</h3>
@@ -100,4 +100,4 @@ const Footer = () => {
   );
 };
 
-export default React.memo(Footer) ;
+export default React.memo(Footer);
